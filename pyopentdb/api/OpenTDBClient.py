@@ -1,10 +1,11 @@
-import requests
-from typing import Union, List
+from typing import Union
 from warnings import warn
 
-from pyopentdb.model import Question, QuestionResponse
+import requests
+
 from pyopentdb.enum import Category, Difficulty, QuestionType, ResponseCode
 from pyopentdb.exc import APIError
+from pyopentdb.model import QuestionResponse, QuestionSet
 
 
 class OpenTDBClient:
@@ -35,7 +36,7 @@ class OpenTDBClient:
         difficulty: Union[Difficulty, str] = None,
         question_type: Union[QuestionType, str] = None,
         retry: int = 5,
-    ) -> List[Question]:
+    ) -> QuestionSet:
         # Validate amount
         if not 1 <= amount <= 50:
             raise APIError("Amount must be between 1 and 50, inclusive")
@@ -79,3 +80,15 @@ class OpenTDBClient:
         raise APIError(
             f"API returned status code {status}, max retries exceeded, stopping."
         )
+
+    def get_question_count(self, category: Union[Category, int] = None) -> dict:
+        if category is None:
+            req = self.session.get("https://opentdb.com/api_count_global.php")
+        else:
+            if isinstance(category, Category):
+                category = category.value.id
+            req = self.session.get(
+                "https://opentdb.com/api_count.php", params={"category": category}
+            )
+        if req.ok:
+            return req.json()

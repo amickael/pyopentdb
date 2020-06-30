@@ -1,6 +1,8 @@
-from dataclasses import dataclass
-from typing import List
+import json
+from dataclasses import dataclass, asdict
+from enum import Enum
 from random import shuffle
+from typing import List, Union
 
 from pyopentdb.enum import QuestionType, Difficulty, Category
 from pyopentdb.exc import QuestionError
@@ -27,3 +29,17 @@ class Question:
             raise QuestionError(
                 f"Answer ({self.answer}) is not in the list of choices ({self.choices})"
             )
+
+    def to_serializable(self, as_json: bool = False) -> Union[dict, str]:
+        output = {}
+        for key, value in asdict(self).items():
+            if isinstance(value, Category):
+                output[key] = value.value.name
+            elif isinstance(value, Enum):
+                output[key] = value.value
+            else:
+                output[key] = value
+        if as_json is True:
+            return json.dumps(output)
+        else:
+            return output
