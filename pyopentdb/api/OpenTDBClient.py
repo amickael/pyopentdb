@@ -11,15 +11,14 @@ from pyopentdb.model import QuestionResponse, QuestionSet
 class OpenTDBClient:
     def __init__(self):
         self.session = requests.Session()
-        self.session.params = {"token": self.request_token()}
+        self.request_token()
 
-    @staticmethod
-    def request_token() -> str:
+    def request_token(self):
         req = requests.get(
             "https://opentdb.com/api_token.php", params={"command": "request"}
         )
         if req.ok:
-            return req.json().get("token")
+            self.session.params.update({"token": req.json().get("token")})
 
     def reset_token(self):
         req = requests.get(
@@ -65,6 +64,9 @@ class OpenTDBClient:
                 resp = QuestionResponse(**req.json())
                 if resp.response_code == ResponseCode.TOKEN_EMPTY:
                     self.reset_token()
+                    continue
+                elif resp.response_code == ResponseCode.TOKEN_NOT_FOUND:
+                    self.request_token()
                     continue
                 elif resp.response_code != ResponseCode.SUCCESS:
                     warn(resp.response_code.value.description)
