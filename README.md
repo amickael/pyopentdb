@@ -7,6 +7,8 @@
 # pyopentdb
 Python interface for the [Open Trivia DB API](https://opentdb.com/api_config.php)
 
+<img src="https://opentdb.com/images/logo.png" height="175">
+
 ## 👶 Dependencies
 * [Python 3.6 or higher](https://www.python.org/downloads/)
 
