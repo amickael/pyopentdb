@@ -17,7 +17,7 @@ pip install pyopentdb
 ```
 
 ## 🚀 Quick Start
-To get started create an instance of `OpenTDBClient`. Helper enums are provided to make querying easier. Using these enums is not required, you may also pass the standard identifiers as integers/strings. Please see the [API documentation]('https://opentdb.com/api_config.php) for more information.
+To get started create an instance of `OpenTDBClient`. Helper enums are provided to make querying easier. Using these enums is not required, you may also pass the standard identifiers as integers/strings. Please see the [API documentation](https://opentdb.com/api_config.php) for more information.
 
 
 
