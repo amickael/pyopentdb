@@ -5,13 +5,13 @@
 [![Code style](https://img.shields.io/badge/code%20style-black-black)](https://github.com/psf/black)
 
 # pyopentdb
-Python interface for the Open Trivia DB API
+Python interface for the [Open Trivia DB API](https://opentdb.com/api_config.php)
 
 ## 👶 Dependencies
 * [Python 3.6 or higher](https://www.python.org/downloads/)
 
 ## 🛠️ Installation
-Install from PyPI using `pip`, you may need to use `pip3` depending on your installation
+Install from PyPI using `pip`, you may need to use `pip3` depending on your installation.
 ```sh
 pip install pyopentdb
 ```
@@ -51,3 +51,6 @@ questions = client.get_questions(
 Question choices are shuffled on each call. The `answer_index` field is provided to easily check the correct answer in the choice list.
 
 Both `Question` and `QuestionSet` provide the `.to_serializable` method, which returns either an easily serializable output or a JSON formatted string.
+
+## ⚖️ License
+[MIT © 2020 Andrew Mickael](https://github.com/amickael/pyopentdb/blob/master/LICENSE)
