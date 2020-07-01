@@ -80,6 +80,8 @@ Reset current token counter if token has run out of new questions
 
 * Returns:
   * None
+  
+---
  
 #### get_questions
 Get a set of questions based on query params
@@ -95,7 +97,7 @@ Get a set of questions based on query params
   * QuestionSet
 
 ## Question
-Represents a single question returned from the API
+Represents a single question returned by the API
 
 ### Parameters
 * category: Category : Category enum
@@ -116,6 +118,24 @@ Generate an easily serializable object or JSON formatted string
   
 * Returns:
   * (dict, str)
+
+## QuestionSet
+Represents an array of questions returned by the API, behaves like a list
+
+### Parameters
+* items: List[Question] : Array of Question objects
+
+### Methods
+
+#### to_serializable
+Generate an easily serializable object or JSON formatted string
+
+* Parameters:
+  * as_json: bool = False : Return a JSON formatted string
+  
+* Returns:
+  * (List[dict], str)
+
 
 ## ⚖️ License
 [MIT © 2020 Andrew Mickael](https://github.com/amickael/pyopentdb/blob/master/LICENSE)
