@@ -60,28 +60,6 @@ Both `Question` and `QuestionSet` provide the `.to_serializable` method, which r
 Client that handles HTTP requests and session tokens
 
 ### Methods
-
-#### request_token
-Request a fresh token and add to session scope
-
-* Parameters:
-  * None
-
-* Returns:
-  * None
-
----
-
-#### reset_token
-Reset current token counter if token has run out of new questions
-
-* Parameters:
-  * None
-
-* Returns:
-  * None
-  
----
  
 #### get_questions
 Get a set of questions based on query params
