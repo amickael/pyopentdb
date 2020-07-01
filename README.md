@@ -54,5 +54,68 @@ Question choices are shuffled on each call. The `answer_index` field is provided
 
 Both `Question` and `QuestionSet` provide the `.to_serializable` method, which returns either an easily serializable output or a JSON formatted string.
 
+## ⚙️ API Reference
+
+## OpenTDBClient
+Client that handles HTTP requests and session tokens
+
+### Methods
+
+#### request_token
+Request a fresh token and add to session scope
+
+* Parameters:
+  * None
+
+* Returns:
+  * None
+
+---
+
+#### reset_token
+Reset current token counter if token has run out of new questions
+
+* Parameters:
+  * None
+
+* Returns:
+  * None
+ 
+#### get_questions
+Get a set of questions based on query params
+
+* Parameters:
+  * amount: int = 10 : Number of items to return between 1 and 50
+  * category: (Category, int) = None : Category enum or ID, None for all
+  * difficulty: (Difficulty, str) = None : Difficulty enum or name, None for all
+  * question_type: (QuestionType, str) = None : Question type enum or name, None for all
+  * retry: int = 5 : Number of times to retry call after 4xx or 5xx status code or nonzero response code
+
+* Returns:
+  * QuestionSet
+
+## Question
+Represents a single question returned from the API
+
+### Parameters
+* category: Category : Category enum
+* question_type: QuestionType : Question type enum
+* difficulty: Difficulty : Difficulty enum
+* question: str : Question string
+* choices: List[str] : List of shuffled provided choices
+* answer: str : Answer string
+* answer_index: int : Index of answer in choices list
+
+### Methods
+
+#### to_serializable
+Generate an easily serializable object or JSON formatted string
+
+* Parameters:
+  * as_json: bool = False : Return a JSON formatted string
+  
+* Returns:
+  * (dict, str)
+
 ## ⚖️ License
 [MIT © 2020 Andrew Mickael](https://github.com/amickael/pyopentdb/blob/master/LICENSE)
