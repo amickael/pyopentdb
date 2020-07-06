@@ -10,5 +10,5 @@ from pyopentdb.exc import APIError, QuestionError
 from pyopentdb.model import Question
 
 __author__ = "Andrew Mickael"
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 __description__ = "Python interface for the Open Trivia DB"
