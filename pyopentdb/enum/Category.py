@@ -1,7 +1,7 @@
 from collections import namedtuple
 from enum import Enum, unique
 
-CategoryItem = namedtuple("CategoryItem", ["id", "name", "emoji", "aria-label"])
+CategoryItem = namedtuple("CategoryItem", ["id", "name", "emoji", "aria"])
 
 
 @unique
